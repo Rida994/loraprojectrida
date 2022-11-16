@@ -35,12 +35,13 @@ void loop() {
   int packetSize = LoRa.parsePacket();
   if (packetSize){
     Serial.println("Received packet ");
+    Serial.println(packetSize);
 
     while (LoRa.available()){
       LoRaData = LoRa.readString();
       Serial.println(LoRaData);
     }
-    if (LoRaData.startsWith("Time")){
+    if (LoRaData.startsWith("Ti")){
         Serial.println("Finished");
       }
      else {
@@ -48,9 +49,15 @@ void loop() {
          Serial.println(LoRa.packetRssi());
          LoRa.beginPacket();
          LoRa.print("received");
+//         delay(500);
+//         LoRa.print("received 2");
+//         delay(500);
+//         LoRa.print("received 3");
+//         delay(500);
+//         LoRa.print("received 4");
          Serial.println("sent acknowledgement");
          LoRa.endPacket(); 
-  }
-
+ 
+}
 }
 }
